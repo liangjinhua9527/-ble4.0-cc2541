@@ -1,0 +1,47 @@
+------完成------2018.05.16
+整理优化代码
+修改部分功能
+经过测试，可以正常使用，请勿修改
+------修改------2018.04.03
+治疗模式-->治疗档位
+ if (buff < battery_ADC[1])
+ {
+    HAL_OFF_IO_SwLock();
+    return battery[0];
+ }
+const uint16 battery_ADC[21] = {0,2680,2690,2700,2715,2730,2745,2760,2775,2790,2805,2825,2845,2865,2885,2905,2925,2945,2965,3010,3060};
+#define Heat_High_Strat  43
+#define Heat_High_Stop   45
+#define Heat_Low_Start   39
+#define Heat_Low_Stop    41
+------完成------2018.04.01
+药包检测
+药包控制 
+蜂鸣器
+电量显示
+----------------
+
+UUID4改为通知模式，发送设备型号，以便APP可以切换界面，并且在连接状态和连接性能与5B改为一样
+-------------------------------------------------------------------------
+连接间隔时间调整。连接时间太短，在与手机通讯过程中，使传输数据误差增大。
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#define DEFAULT_DESIRED_MIN_CONN_INTERVAL     2//80   连接间隔与数据发送量有关， 连接间隔越短， 单位时间内就能发送越多的数据
+
+// Maximum connection interval (units of 1.25ms, 800=1000ms) if automatic parameter update request is enabled
+#define DEFAULT_DESIRED_MAX_CONN_INTERVAL     20//800   连接间隔与数据发送量有关， 连接间隔越短， 单位时间内就能发送越多的数据
+
+// Slave latency to use if automatic parameter update request is enabled
+#define DEFAULT_DESIRED_SLAVE_LATENCY         5//可跳过连接间隔
+
+
+#define DEFAULT_DESIRED_MIN_CONN_INTERVAL     10//80   连接间隔与数据发送量有关， 连接间隔越短， 单位时间内就能发送越多的数据
+
+// Maximum connection interval (units of 1.25ms, 800=1000ms) if automatic parameter update request is enabled
+#define DEFAULT_DESIRED_MAX_CONN_INTERVAL     100//800   连接间隔与数据发送量有关， 连接间隔越短， 单位时间内就能发送越多的数据
+
+// Slave latency to use if automatic parameter update request is enabled
+#define DEFAULT_DESIRED_SLAVE_LATENCY         10//可跳过连接间隔
+-----------------------------------------------------------------------
+
+static void simpleProfileChangeCB( uint8 paramID )在这个函数添加
+------------------------------------------------------------------------

@@ -31,7 +31,7 @@ void End_Beep(void);
 uint16 Packet_ADC_14(PAK_ADC_CHANNEL channel);
 uint8 Exchange_BatADC(uint16 dat);
 uint8 Exchange_TempADC(uint16 dat);
-void Mode_base(uint16 Freq,uint16 per,uint16 jiange_time);
+uint8 Mode_base(uint16 Freq,uint16 per,uint16 jiange_time);
 void ZJ_mode();
 void AM_mode();
 void CJ_mode();
@@ -263,11 +263,18 @@ __interrupt void T3_ISR(void)
 uint8 zj_time = 0;
 uint16 jiange_num = 0;
 char cishu = 0;
+char cf = 0;
 
-void Mode_base(uint16 Freq,uint16 per,uint16 jiange_time)
+uint8 Mode_base(uint16 Freq,uint16 per,uint16 jiange_time)
 { 
-//    jiange_num++;
-//    if(jiange_time < jiange_num){
+    jiange_num++;
+    if(jiange_time < jiange_num){
+    if(per == 0)
+    {
+      cishu++;
+      return 0;
+    }
+    
     zj_time = per / 15;
     cd_time =  Freq * zj_time; //³äµçÊ±¼ä
     time_num++;
@@ -289,7 +296,7 @@ void Mode_base(uint16 Freq,uint16 per,uint16 jiange_time)
            P_Ctrl = 1;   
            DelayUS(220);   
            P_Ctrl = 0;
-//           time_pn = 1;
+           time_pn = 1;
         }
        else{
           N_Ctrl = 1;
@@ -308,38 +315,41 @@ void Mode_base(uint16 Freq,uint16 per,uint16 jiange_time)
      {
        time_num = 0;
        jiange_num=0;
-//       cishu++;
+       cishu++;
      }
-    }
-// }
-    
-     
+  }
+}     
 
 void TN_mode()
 {
-
- if(cishu< 6){
-   
-   Mode_base(qiangdu,500,4000);
- }
- else if(cishu < 12){
-   Mode_base(qiangdu,500,2000);
- }
- else if(cishu < 18){
-   Mode_base(qiangdu,500,1000);
- }
- else if(cishu < 26){
-   Mode_base(qiangdu,500,500);
- }
- else if(cishu < 36){
-   Mode_base(qiangdu,500,100);
-
- }
-  else if(cishu < 46){
-   Mode_base(qiangdu,500,0);
- }
- else if(cishu < 56) cishu = 0;
-   
+    if(cishu< 6){
+     Mode_base(qiangdu,200,2000);
+    }
+    else if(cishu == 6){
+     Mode_base(qiangdu,0,15000);
+    }
+    else if(cishu < 15){
+     Mode_base(qiangdu,500,1000);
+    }
+    else if(cishu < 30){
+     Mode_base(qiangdu,500,500);
+    }
+    else if(cishu < 40){
+     Mode_base(qiangdu,500,100);
+    }
+    else if(cishu < 50){
+     Mode_base(qiangdu,500,10);
+    }
+    else if(cishu < 60){
+     Mode_base(qiangdu,500,0);
+    }
+    else if(cishu < 70) {
+     cishu = 6;
+     cf++;
+     if(cf == 4) {cishu = 0;cf = 0;}
+    }
+    
+  
 }
 
 
