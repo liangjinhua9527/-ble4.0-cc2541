@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Project>
+  <Desktop>
+    <Static>
+      <Debug-Log>
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1381</ColumnWidth1></Debug-Log>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1035</ColumnWidth1><ColumnWidth2>276</ColumnWidth2><ColumnWidth3>69</ColumnWidth3></Build>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>147</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Disassembly>
+        <col-names>
+          
+          
+        <item>Disassembly</item><item>_I0</item></col-names>
+        <col-widths>
+          
+          
+        <item>500</item><item>20</item></col-widths>
+        <DisasmHistory/>
+        
+        
+      <PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><ShowCodeCoverage>1</ShowCodeCoverage><ShowInstrProfiling>1</ShowInstrProfiling></Disassembly>
+    <Find-in-Files><ColumnWidth0>607</ColumnWidth0><ColumnWidth1>101</ColumnWidth1><ColumnWidth2>911</ColumnWidth2><ColumnWidth3>405</ColumnWidth3></Find-in-Files><WATCH_1><expressions><item>static</item><item>static gattAttribute_t simpleProfileAttrTbl[SERVAPP_NUM_ATTR_SUPPORTED] = 
+
+</item><item>simpleProfileAttrTbl</item><item>simpleProfileAttrTbl</item><item>simpleProfileAttrTbl</item><item>simpleProfileChar5Config</item><item>simpleProfileChar5Config</item><item>simpleProfileAttrTbl</item><item>simpleProfileAttrTbl</item><item/></expressions><col-names><item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names><col-widths><item>188</item><item>150</item><item>100</item><item>160</item></col-widths><PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>QuickWatch</Factory></Window></Windows></PreferedWindows></WATCH_1><QuickWatch><col-names><item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names><col-widths><item>100</item><item>150</item><item>100</item><item>100</item></col-widths><QWatchHistory><item>SimpleProfile_AddService</item><item>simplekeysAttrTbl</item></QWatchHistory><PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>WATCH_1</Factory></Window></Windows></PreferedWindows></QuickWatch><Select-Ambiguous-Definitions><ColumnWidth0>709</ColumnWidth0><ColumnWidth1>101</ColumnWidth1><ColumnWidth2>1215</ColumnWidth2></Select-Ambiguous-Definitions></Static>
+    <Windows>
+      
+      
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-7004-30500</Identity>
+            <TabName>Debug Log</TabName>
+            <Factory>Debug-Log</Factory>
+            <Session/>
+          </Tab>
+          <Tab>
+            <Identity>TabID-6481-30510</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-10761-21391</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab><Tab><Identity>TabID-32621-22751</Identity><TabName>Ambiguous Definitions</TabName><Factory>Select-Ambiguous-Definitions</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-17752-30503</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>SimpleBLEPeripheral</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/APP</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/HAL</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/HAL/Target</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/HAL/Target/CC2540EB</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/HAL/Target/CC2540EB/Config</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/HAL/Target/CC2540EB/Drivers</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/HAL/Target/CC2540EB/Includes</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/PROFILES</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/TOOLS</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1><Wnd4><Tabs><Tab><Identity>TabID-19633-26119</Identity><TabName>Disassembly</TabName><Factory>Disassembly</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd4><Wnd5><Tabs><Tab><Identity>TabID-19575-9827</Identity><TabName>Watch 1</TabName><Factory>WATCH_1</Factory></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd5></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\simpleble.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Packet.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>36</YPos2><SelStart2>2073</SelStart2><SelEnd2>2089</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\Profiles\SimpleProfile\simpleGATTprofile.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>32</YPos2><SelStart2>4262</SelStart2><SelEnd2>4262</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Packet.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>272</YPos2><SelStart2>8460</SelStart2><SelEnd2>8460</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\Profiles\SimpleProfile\CC254x\simpleGATTprofile.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>176</YPos2><SelStart2>5398</SelStart2><SelEnd2>5398</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\simpleBLEPeripheral.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>167</YPos2><SelStart2>6951</SelStart2><SelEnd2>6951</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>H:\My_BLE\Packet-&#x7CBe;&#x7B80;-2\BLE-CC254x-1.4.2.2Uart2Uart-&#x51FA;&#x5382;&#x7A0B;&#x5e8F;v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\SimpleBLEPeripheral_Main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>68</YPos2><SelStart2>3697</SelStart2><SelEnd2>3697</SelEnd2></Tab><ActiveTab>6</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\simpleBLE.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>30</YPos2><SelStart2>1261</SelStart2><SelEnd2>1261</SelEnd2></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-00DF6838><key>iaridepm.enu1</key></Toolbar-00DF6838></Sizes></Row0><Row1><Sizes><Toolbar-09414048><key>debuggergui.enu1</key></Toolbar-09414048></Sizes></Row1></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>712</Bottom><Right>238</Right><x>-2</x><y>-2</y><xscreen>25</xscreen><yscreen>221</yscreen><sizeHorzCX>19260</sizeHorzCX><sizeHorzCY>225741</sizeHorzCY><sizeVertCX>184900</sizeVertCX><sizeVertCY>729316</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes><Wnd4><Rect><Top>-2</Top><Left>-2</Left><Bottom>712</Bottom><Right>69</Right><x>-2</x><y>-2</y><xscreen>71</xscreen><yscreen>168</yscreen><sizeHorzCX>54700</sizeHorzCX><sizeHorzCY>171604</sizeHorzCY><sizeVertCX>54700</sizeVertCX><sizeVertCY>729316</sizeVertCY></Rect></Wnd4></Sizes></Row0><Row1><Sizes><Wnd5><Rect><Top>-2</Top><Left>67</Left><Bottom>712</Bottom><Right>385</Right><x>67</x><y>-2</y><xscreen>127</xscreen><yscreen>183</yscreen><sizeHorzCX>97843</sizeHorzCX><sizeHorzCY>186925</sizeHorzCY><sizeVertCX>244992</sizeVertCX><sizeVertCY>729316</sizeVertCY></Rect></Wnd5></Sizes></Row1></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1300</Right><x>-2</x><y>-2</y><xscreen>1302</xscreen><yscreen>200</yscreen><sizeHorzCX>1003082</sizeHorzCX><sizeHorzCY>204290</sizeHorzCY><sizeVertCX>19260</sizeVertCX><sizeVertCY>225741</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Project>
+
+

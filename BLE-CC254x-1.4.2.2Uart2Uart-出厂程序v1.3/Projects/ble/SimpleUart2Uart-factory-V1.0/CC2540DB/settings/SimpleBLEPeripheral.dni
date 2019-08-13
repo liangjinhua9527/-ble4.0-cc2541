@@ -1,0 +1,52 @@
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[DebugChecksum]
+Checksum=-2094962512
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[Breakpoints]
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\Source\simpleBLE.c}.259.1" 0 0 0 0 "" 0 ""
+Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\..\common\cc2540\OnBoard.c}.62.1" 0 0 0 0 "" 0 ""
+Bp2=_ "STD_CODE" "{$PROJ_DIR$}.265.1" 0 0 0 0 "" 0 ""
+Bp3=_ "STD_CODE" "{$PROJ_DIR$}.265.1" 0 0 0 0 "" 0 ""
+Bp4=_ "STD_CODE" "{$PROJ_DIR$\..\..\Profiles\Keys\CC254x\simplekeys.c}.126.1" 0 0 0 0 "" 0 ""
+Bp5=_ "STD_CODE" "{$PROJ_DIR$\..\Source\simpleBLEPeripheral.c}.257.1" 0 0 0 0 "" 0 ""
+Bp6=_ "STD_CODE" "{$PROJ_DIR$\..\Source\simpleBLEPeripheral.c}.383.4" 0 0 0 0 "" 0 ""
+Bp7=_ "STD_CODE" "{$PROJ_DIR$\..\Source\Packet.c}.64.5" 0 0 0 0 "" 0 ""
+Bp8=_ "STD_CODE" "{$PROJ_DIR$\..\Source\Packet.c}.65.5" 0 0 0 0 "" 0 ""
+Bp9=_ "STD_CODE" "{$PROJ_DIR$\..\Source\Packet.c}.67.5" 0 0 0 0 "" 0 ""
+Bp10=_ "STD_CODE" "{$PROJ_DIR$\..\Source\Packet.c}.69.5" 0 0 0 0 "" 0 ""
+Count=11
+[ChipconEmu]
+Stop timers on halt=1
+Leave target running=1
+[Aliases]
+A0=_ "K:\BLE-CC254x-1.4.2.2Uart2Uart\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Components\hal\target\CC2540EB\hal_dma.c" ""
+A1=_ "K:\BLE-CC254x-1.4.2.2Uart2Uart\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Components\hal\target\CC2540EB\hal_startup.c" ""
+A2=_ "K:\BLE-CC254x-1.4.2.2Uart2Uart\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\Profiles\Roles\gap.c" ""
+A3=_ "K:\BLE-CC254x-1.4.2.2Uart2Uart\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\SimpleBLEPeripheral_Main.c" ""
+A4=_ "K:\My_BLE\BLE-CC254x-1.4.2.2Uart2Uart\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Components\hal\target\CC2540EB\hal_startup.c" ""
+A5=_ "K:\My_BLE\BLE-CC254x-1.4.2.2Uart2Uart\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\SimpleBLEPeripheral_Main.c" ""
+A6=_ "K:\My_BLE\Packet-精简-1\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Components\hal\target\CC2540EB\hal_startup.c" ""
+A7=_ "K:\My_BLE\Packet-精简-1\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\Profiles\Roles\gap.c" ""
+A8=_ "K:\My_BLE\Packet-精简-1\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\SimpleBLEPeripheral_Main.c" ""
+A9=_ "K:\My_BLE\Packet-精简-1\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\common\npi\npi_np\npi.c" ""
+Count=10
+SuppressDialog=0

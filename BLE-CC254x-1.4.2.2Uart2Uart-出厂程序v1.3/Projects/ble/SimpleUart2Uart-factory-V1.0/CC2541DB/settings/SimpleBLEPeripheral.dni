@@ -1,0 +1,47 @@
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[DebugChecksum]
+Checksum=-527934822
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[Breakpoints]
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\Source\LCD_12848.c}.571.7" 0 0 0 0 "" 0 ""
+Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\..\..\..\Components\hal\common\hal_drivers.c}.156.3" 0 0 0 0 "" 0 ""
+Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2540EB\hal_led.c}.599.1" 0 0 0 0 "" 0 ""
+Bp3=_ "STD_CODE" "{$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2540EB\hal_led.c}.599.1" 0 0 0 0 "" 0 ""
+Count=4
+[ChipconEmu]
+Stop timers on halt=0
+Leave target running=1
+[Aliases]
+A0=_ "C:\Texas Instruments\BLE-CC254x-1.4.2.2Uart2Uart\Projects\ble\SimpleOneFW\Source\SimpleBLEPeripheral_Main.c" ""
+A1=_ "C:\Users\Administrator\Desktop\CC2541-Hai\005A-Peripheral\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\Profiles\Roles\gap.c" ""
+A2=_ "C:\Users\Administrator\Desktop\Packet-精简-3.3\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\Profiles\Roles\gap.c" ""
+A3=_ "C:\Users\Administrator\Desktop\Packet-精简-3.4\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\Profiles\Roles\gap.c" ""
+A4=_ "C:\Users\Administrator\Desktop\Packet-精简-3.5\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\OSAL_SimpleBLEPeripheral.c" ""
+A5=_ "C:\Users\Administrator\Desktop\Packet-精简-4.1\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\Profiles\Roles\gap.c" ""
+A6=_ "C:\Users\Administrator\Desktop\新建文件夹 (2)\Packet-精简-4.1-p\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Components\hal\target\CC2540EB\hal_other.c" ""
+A7=_ "C:\Users\jing\Desktop\Packet-精简-3.2\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Components\hal\target\CC2540EB\hal_startup.c" ""
+A8=_ "C:\Users\jing\Desktop\Packet-精简-3.2\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\Profiles\Roles\gap.c" ""
+A9=_ "C:\Users\jing\Desktop\Packet-精简-3.2\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\SimpleBLEPeripheral_Main.c" ""
+A10=_ "C:\Users\jing\Desktop\Packet-精简-3.2\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\common\npi\npi_np\npi.c" ""
+A11=_ "C:\Users\jing\Desktop\Packet-精简-3.3\BLE-CC254x-1.4.2.2Uart2Uart-出厂程序v1.3\Projects\ble\Profiles\Roles\gap.c" ""
+Count=12
+SuppressDialog=1

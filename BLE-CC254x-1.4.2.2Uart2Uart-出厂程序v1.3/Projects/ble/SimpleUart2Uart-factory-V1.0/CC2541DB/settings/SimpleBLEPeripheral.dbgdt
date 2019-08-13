@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Project>
+  <Desktop>
+    <Static>
+      <Debug-Log>
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1381</ColumnWidth1></Debug-Log>
+      <Build>
+        <ColumnWidth0>20</ColumnWidth0>
+        <ColumnWidth1>1035</ColumnWidth1>
+        <ColumnWidth2>276</ColumnWidth2>
+        <ColumnWidth3>69</ColumnWidth3>
+      </Build>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>103</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Disassembly>
+        <col-names>
+          
+          
+        <item>Disassembly</item><item>_I0</item></col-names>
+        <col-widths>
+          
+          
+        <item>500</item><item>20</item></col-widths>
+        <DisasmHistory><item>P1_3</item></DisasmHistory>
+        
+        
+      <ShowCodeCoverage>1</ShowCodeCoverage><ShowInstrProfiling>1</ShowInstrProfiling></Disassembly>
+    <QuickWatch><col-names><item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names><col-widths><item>106</item><item>150</item><item>100</item><item>102</item></col-widths><QWatchHistory><item>simpleProfileAttrTbl</item></QWatchHistory></QuickWatch><WATCH_1><expressions><item>simpleProfileAttrTbl</item><item/></expressions><col-names><item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names><col-widths><item>100</item><item>150</item><item>100</item><item>100</item></col-widths></WATCH_1><Register/><Find-in-Files><ColumnWidth0>607</ColumnWidth0><ColumnWidth1>101</ColumnWidth1><ColumnWidth2>911</ColumnWidth2><ColumnWidth3>405</ColumnWidth3></Find-in-Files></Static>
+    <Windows>
+      
+      
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-26582-14529</Identity>
+            <TabName>Debug Log</TabName>
+            <Factory>Debug-Log</Factory>
+            <Session/>
+          </Tab>
+          <Tab>
+            <Identity>TabID-26059-14539</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-30237-1130</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd4>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-4562-14532</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>SimpleBLEPeripheral</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/APP</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/HAL</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/HAL/Target</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/HAL/Target/CC2540EB</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/HAL/Target/CC2540EB/Drivers</ExpandedNode><ExpandedNode>SimpleBLEPeripheral/PROFILES</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd4><Wnd5>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-15311-14535</Identity>
+            <TabName>Disassembly</TabName>
+            <Factory>Disassembly</Factory>
+            <Session/>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd5><Wnd6><Tabs><Tab><Identity>TabID-32465-17772</Identity><TabName>Quick Watch</TabName><Factory>QuickWatch</Factory></Tab><Tab><Identity>TabID-23348-18148</Identity><TabName>Watch 1</TabName><Factory>WATCH_1</Factory></Tab></Tabs><SelectedTab>1</SelectedTab></Wnd6><Wnd7><Tabs><Tab><Identity>TabID-16594-4775</Identity><TabName>Register</TabName><Factory>Register</Factory><Session><REG1>0</REG1><REG2>0</REG2><Group>3</Group><States>3</States><State0>P0</State0><State1>P1</State1><State2>P2</State2></Session></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd7></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Components\hal\target\CC2540EB\hal_sleep.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>491</YPos2><SelStart2>20576</SelStart2><SelEnd2>20579</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Components\hal\target\CC2540EB\hal_mcu.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>123</YPos2><SelStart2>6614</SelStart2><SelEnd2>6614</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Components\ble\controller\CC254x\include\ll_sleep.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>68</YPos2><SelStart2>3847</SelStart2><SelEnd2>3847</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\simpleBLE.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Components\hal\target\CC2540EB\hal_other.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>246</SelStart2><SelEnd2>246</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Components\ble\controller\CC254x\include\phy.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>510</YPos2><SelStart2>23470</SelStart2><SelEnd2>23470</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\simpleBLE.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Components\hal\target\CC2540EB\hal_key.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>157</YPos2><SelStart2>8298</SelStart2><SelEnd2>8298</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\common\cc2540\OnBoard.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>51</YPos2><SelStart2>3386</SelStart2><SelEnd2>3386</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Components\ble\controller\CC254x\include\ll.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>2156</YPos2><SelStart2>86047</SelStart2><SelEnd2>86047</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Components\ble\host\linkdb.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>181</YPos2><SelStart2>7791</SelStart2><SelEnd2>7791</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\buildConfig.cfg</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Components\hal\target\CC2540EB\hal_board_cfg.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>133</YPos2><SelStart2>5822</SelStart2><SelEnd2>5822</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\common\cc2540\OnBoard.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>341</YPos2><SelStart2>8132</SelStart2><SelEnd2>8132</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\iar\8051\inc\ioCC2541.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>170</YPos2><SelStart2>11289</SelStart2><SelEnd2>11289</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\SimpleBLEPeripheral_Main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>97</YPos2><SelStart2>4291</SelStart2><SelEnd2>4291</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\OSAL_SimpleBLEPeripheral.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>87</YPos2><SelStart2>4480</SelStart2><SelEnd2>4480</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Packet.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>400</SelStart2><SelEnd2>400</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Packet.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>211</YPos2><SelStart2>7248</SelStart2><SelEnd2>7248</SelEnd2></Tab><ActiveTab>18</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Packet_BLE.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>1269</SelStart2><SelEnd2>1269</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Components\hal\include\hal_key.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>67</YPos2><SelStart2>3940</SelStart2><SelEnd2>3940</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\Components\hal\target\CC2540EB\_hal_uart_dma.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>379</YPos2><SelStart2>15218</SelStart2><SelEnd2>15218</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\simpleBLEPeripheral.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>45</YPos2><SelStart2>3107</SelStart2><SelEnd2>3107</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\simpleBLEPeripheral.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>368</YPos2><SelStart2>15830</SelStart2><SelEnd2>15830</SelEnd2></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-010CE730><key>iaridepm.enu1</key></Toolbar-010CE730></Sizes></Row0><Row1><Sizes><Toolbar-09C57668><key>debuggergui.enu1</key></Toolbar-09C57668></Sizes></Row1></Top><Left><Row0><Sizes><Wnd4><Rect><Top>-2</Top><Left>-2</Left><Bottom>657</Bottom><Right>194</Right><x>-2</x><y>-2</y><xscreen>73</xscreen><yscreen>274</yscreen><sizeHorzCX>38021</sizeHorzCX><sizeHorzCY>274549</sizeHorzCY><sizeVertCX>102083</sizeVertCX><sizeVertCY>660321</sizeVertCY></Rect></Wnd4></Sizes></Row0></Left><Right><Row0><Sizes><Wnd5><Rect><Top>-2</Top><Left>-2</Left><Bottom>657</Bottom><Right>31</Right><x>-2</x><y>-2</y><xscreen>73</xscreen><yscreen>274</yscreen><sizeHorzCX>38021</sizeHorzCX><sizeHorzCY>274549</sizeHorzCY><sizeVertCX>10417</sizeVertCX><sizeVertCY>660321</sizeVertCY></Rect></Wnd5></Sizes></Row0><Row1><Sizes><Wnd6><Rect><Top>-2</Top><Left>29</Left><Bottom>657</Bottom><Right>544</Right><x>29</x><y>-2</y><xscreen>129</xscreen><yscreen>182</yscreen><sizeHorzCX>67188</sizeHorzCX><sizeHorzCY>182365</sizeHorzCY><sizeVertCX>268229</sizeVertCX><sizeVertCY>660321</sizeVertCY></Rect></Wnd6></Sizes></Row1><Row2><Sizes><Wnd7><Rect><Top>-2</Top><Left>542</Left><Bottom>657</Bottom><Right>900</Right><x>542</x><y>-2</y><xscreen>129</xscreen><yscreen>182</yscreen><sizeHorzCX>67188</sizeHorzCX><sizeHorzCY>182365</sizeHorzCY><sizeVertCX>186458</sizeVertCX><sizeVertCY>660321</sizeVertCY></Rect></Wnd7></Sizes></Row2></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>272</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>274</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>274549</sizeHorzCY><sizeVertCX>38021</sizeVertCX><sizeVertCY>274549</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Project>
+
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<userOverrides>
+  <override>
+    <path>C:\Users\Administrator\Desktop\Packet-&#x7CBe;&#x7B80;-3.2\BLE-CC254x-1.4.2.2Uart2Uart-&#x51FA;&#x5382;&#x7A0B;&#x5e8F;v1.3\Components\hal\include\hal_key.h</path>
+    <encoding>GB2312</encoding>
+  </override>
+  <override>
+    <path>C:\Users\Administrator\Desktop\Packet-&#x7CBe;&#x7B80;-3.3\BLE-CC254x-1.4.2.2Uart2Uart-&#x51FA;&#x5382;&#x7A0B;&#x5e8F;v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\LCD_12848.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>C:\Users\Administrator\Desktop\Packet-&#x7CBe;&#x7B80;-3.3\BLE-CC254x-1.4.2.2Uart2Uart-&#x51FA;&#x5382;&#x7A0B;&#x5e8F;v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\Packet.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>C:\Users\Administrator\Desktop\Packet-&#x7CBe;&#x7B80;-3.4\BLE-CC254x-1.4.2.2Uart2Uart-&#x51FA;&#x5382;&#x7A0B;&#x5e8F;v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\LCD_12848.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>C:\Users\Administrator\Desktop\&#x65B0;&#x5eFA;&#x6587;&#x4eF6;&#x5939; (2)\Packet-&#x7CBe;&#x7B80;-4.1-p\BLE-CC254x-1.4.2.2Uart2Uart-&#x51FA;&#x5382;&#x7A0B;&#x5e8F;v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\simpleBLEPeripheral.c</path>
+    <encoding>GB2312</encoding>
+  </override>
+  <override>
+    <path>C:\Users\jing\Desktop\Packet-&#x7CBe;&#x7B80;-3.3\BLE-CC254x-1.4.2.2Uart2Uart-&#x51FA;&#x5382;&#x7A0B;&#x5e8F;v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\LCD_12848.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>C:\Users\jing\Desktop\Packet-&#x7CBe;&#x7B80;-3.3\BLE-CC254x-1.4.2.2Uart2Uart-&#x51FA;&#x5382;&#x7A0B;&#x5e8F;v1.3\Projects\ble\SimpleUart2Uart-factory-V1.0\Source\simpleBLEPeripheral.c</path>
+    <encoding>System</encoding>
+  </override>
+</userOverrides>
+
+
