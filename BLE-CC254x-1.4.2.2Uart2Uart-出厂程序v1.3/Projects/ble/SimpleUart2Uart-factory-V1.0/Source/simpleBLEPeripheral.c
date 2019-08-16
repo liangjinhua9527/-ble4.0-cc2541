@@ -470,7 +470,7 @@ uint16 SimpleBLEPeripheral_ProcessEvent( uint8 task_id, uint16 events )
           LED_B = 1;      
           EA = 0;                  //开总中断
           POW_LOCK = 0;
-        }
+        }  
  
 
       /**********************关机************************/

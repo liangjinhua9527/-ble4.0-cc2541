@@ -260,13 +260,15 @@ extern Packet_Attribute Packet_1;
 extern uint8 simpleBLETaskId;      
 void OnBoard_KeyCallback ( uint8 keys, uint8 state )
 {
+  uint16 bat_check;
+  bat_check = Packet_ADC_14(BAT);
   if ( keys == HAL_KEY_SW_QDJ )      //S2--启动按键处理
   { 
     if(state == 0x02)
     {
       if(Packet_1.PAK.Apparatus_Status == 0 )
       {
-        if(Power_Check == 1)
+        if(Power_Check == 1 || bat_check <= 4400)
         {
           LED_B = 1; 
           POW_LOCK = 0;
@@ -285,8 +287,8 @@ void OnBoard_KeyCallback ( uint8 keys, uint8 state )
       LED_B = 1;      
       EA = 0;                  //开总中断
       POW_LOCK = 0;
-     } 
-    }
+    } 
+   }
     if(Packet_1.PAK.Apparatus_Status)
     {
       if(state == 0x01)
