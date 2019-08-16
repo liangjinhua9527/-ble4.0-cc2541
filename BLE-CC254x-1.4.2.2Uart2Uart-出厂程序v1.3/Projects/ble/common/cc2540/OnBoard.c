@@ -257,7 +257,10 @@ uint8 OnBoard_SendKeys( uint8 keys, uint8 state )
  * @return  void
  *********************************************************************/
 extern Packet_Attribute Packet_1;
-extern uint8 simpleBLETaskId;      
+extern uint8 simpleBLETaskId; 
+extern uint8 moshi_num;
+extern uint16 cishu;
+
 void OnBoard_KeyCallback ( uint8 keys, uint8 state )
 {
   uint16 bat_check;
@@ -268,7 +271,7 @@ void OnBoard_KeyCallback ( uint8 keys, uint8 state )
     {
       if(Packet_1.PAK.Apparatus_Status == 0 )
       {
-        if(Power_Check == 1 || bat_check <= 4400)
+        if(Power_Check == 1)
         {
           LED_B = 1; 
           POW_LOCK = 0;
@@ -323,12 +326,15 @@ void OnBoard_KeyCallback ( uint8 keys, uint8 state )
           }
           else if(Packet_1.PAK.LED_Status==3) //切为第四档
           {
+           
             Packet_1.PAK.LED_Status =0;
             Mode_flag = 4;
             //temp_D = 15;
-            Packet_1.PAK.Work_State = Work_Run;
+            Packet_1.PAK.Work_State = Work_Run;   
 //            Packet_1.PAK.Cure_State = 1;
           }
+          cishu = 0;
+          moshi_num = 0;
 //          else if(Packet_1.PAK.LED_Status==4) //切为第四档
 //          {
 //            Packet_1.PAK.LED_Status =0;
