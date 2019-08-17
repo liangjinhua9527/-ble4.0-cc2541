@@ -122,8 +122,11 @@ static uint8 registeredKeysTaskID = NO_TASK_ID;
  * @param   level: COLD,WARM,READY
  * @return  None
  */
+uint16 bat_check;
 void InitBoard( uint8 level )
 {
+   
+  bat_check = Packet_ADC_14(BAT);
   if ( level == OB_COLD )
   {
     // Interrupts off
@@ -260,18 +263,17 @@ extern Packet_Attribute Packet_1;
 extern uint8 simpleBLETaskId; 
 extern uint8 moshi_num;
 extern uint16 cishu;
+extern uint16 bat_check;
 
 void OnBoard_KeyCallback ( uint8 keys, uint8 state )
 {
-  uint16 bat_check;
-  bat_check = Packet_ADC_14(BAT);
   if ( keys == HAL_KEY_SW_QDJ )      //S2--启动按键处理
   { 
     if(state == 0x02)
     {
       if(Packet_1.PAK.Apparatus_Status == 0 )
       {
-        if(Power_Check == 1)
+        if(Power_Check == 1  || (bat_check <4300))//4350
         {
           LED_B = 1; 
           POW_LOCK = 0;

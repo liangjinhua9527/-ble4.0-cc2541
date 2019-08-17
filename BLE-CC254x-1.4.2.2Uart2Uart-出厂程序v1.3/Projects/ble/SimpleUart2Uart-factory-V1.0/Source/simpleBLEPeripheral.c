@@ -397,9 +397,11 @@ void SimpleBLEPeripheral_Init( uint8 task_id )
  * @return  events not processed
  */
 
+ 
+
 uint16 SimpleBLEPeripheral_ProcessEvent( uint8 task_id, uint16 events )
 {
-
+  
   VOID task_id; // OSAL required parameter that isn't used in this function
 
   if ( events & SYS_EVENT_MSG )
@@ -474,7 +476,7 @@ uint16 SimpleBLEPeripheral_ProcessEvent( uint8 task_id, uint16 events )
  
 
       /**********************¹Ø»ú************************/
-      if ( events & SBP_GJ_EVT )
+      if ( events & SBP_GJ_EVT)
       {   
         Packet_End();
         return ( events ^ SBP_GJ_EVT );

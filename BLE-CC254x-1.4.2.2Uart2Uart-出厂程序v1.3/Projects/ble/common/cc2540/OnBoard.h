@@ -81,6 +81,7 @@
    
 #define POW_LOCK                       P1_2
 
+
 typedef struct
 {
   osal_event_hdr_t hdr;
@@ -153,6 +154,7 @@ uint8 OnBoard_SendKeys( uint8 keys, uint8 state );
 /*
  * Board specific random number generator
  */
+
 extern uint16 Onboard_rand( void );
 
 /*

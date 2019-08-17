@@ -171,7 +171,7 @@ uint16 HalAdcRead (uint8 channel, uint8 resolution)
   ADCCON3 = channel | resbits | adcRef;
 
   /* Wait for the conversion to be done */
-  while (!(ADCCON1 & HAL_ADC_EOC));
+  while (!(ADCCON1 & HAL_ADC_EOC));    
 
   /* Disable channel after done conversion */
     //ADCCFG &= (adcChannel ^ 0xFF);
@@ -179,7 +179,8 @@ uint16 HalAdcRead (uint8 channel, uint8 resolution)
   /* Read the result */
   reading = (int16) (ADCL);
   reading |= (int16) (ADCH << 8);
-
+  
+  
   /* Treat small negative as 0 */
   if (reading < 0)
     reading = 0;

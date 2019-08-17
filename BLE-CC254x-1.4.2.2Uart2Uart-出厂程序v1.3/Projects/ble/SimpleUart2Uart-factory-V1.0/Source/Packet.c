@@ -143,7 +143,7 @@ uint8 Exchange_BatADC(uint16 dat)
 
 
 
-#define READ_TIMES 10
+#define READ_TIMES 12
 #define LOST_VAL   2
 uint16 Packet_ADC_14(PAK_ADC_CHANNEL channel)
 {
@@ -153,7 +153,7 @@ uint16 Packet_ADC_14(PAK_ADC_CHANNEL channel)
   uint16 temp;
   
   for(i=0;i<READ_TIMES;i++)buf[i] = HalAdcRead (channel, HAL_ADC_RESOLUTION_14);
-  //得出最大值
+
   for(i=0;i<READ_TIMES-1;i++)
   {
     for(j=i+1;j<READ_TIMES;j++)
@@ -193,19 +193,19 @@ void InitLed(void)
     P1DIR &=~((1<<0)|(1<<3));                      //P1.0 P1.3设置为输入
     P1INP |= (1<<0);                           //p1.0三态
     P1DIR |= (1<<2);                          //P1.2设置为输出
-    
+/*---------------------------------PWM引脚设置-----------------------------------------*/     
     P0SEL |=(1<<4);    //P0.4设置为外设I/O口：定时器1通道2
     P0SEL &=~(1<<3);
     PERCFG &= ~(1<<6);    //定时器1为外设位置1
 
-     
+/*-------------------------------------------------------------------------------*/      
     OUT_UP = 0;
     OUT_DOWN = 0;
-    Flag_Timer0_up = 0;
-    Flag_Timer0_down = 0;
-    Flag_TImer0_cishu = 0;
-    Flag_Timer0 = 0;  
-    pn_conut = 0;
+//    Flag_Timer0_up = 0;
+//    Flag_Timer0_down = 0;
+//    Flag_TImer0_cishu = 0;
+//    Flag_Timer0 = 0;  
+//    pn_conut = 0;
     
 } 
     
@@ -218,7 +218,7 @@ void InitLed(void)
 ****************************************************************************/
 void InitT3()  //200u  改波形尖峰
 {  
-  
+ /*-------------------------------PWM(周期28us，高电平18，低电平10)----------------------------------------*/  
   PERCFG |=0x03;
   T1CTL  |= 0x08;     //定时器1设置为32分频，正计数/倒计数模式 1us
   T1CCTL2 |= 0x2C;    //定时器1通道2配置为比较输出，模式101,开通道2中断
@@ -226,7 +226,7 @@ void InitT3()  //200u  改波形尖峰
   T1CC0H = 0;     //定时器1通道0捕获/比较值高位  
   T1CC2L = 4;     //定时器1通道2捕获/比较值低位
   T1CC2H = 0;     //定时器1通道2捕获/比较值高位
- 
+/*--------------------------------定时器中断（100us进入一次）------------------------------------------*/ 
   T3CTL  = 0xe6;                //定时器计数器自加1为4us
   T3CCTL0 = 0x54;
   T3CC0 = 25;                  //上限值设置10  
@@ -268,59 +268,62 @@ __interrupt void T3_ISR(void)
       TN_mode();
     }    
 }
-
+/*---------------------Freq：强度，per：整个周期，jiangge_time：延时（不工作的时间）------------------------------------------------------*/ 
 uint8 Mode_base(uint16 Freq,uint16 per,uint16 jiange_time)
 {       
     jiange_num++;
-    if(jiange_time < jiange_num){
-    if(per == 0)
+    if(jiange_time < jiange_num)
     {
-      cishu++;
-      return 0;
-    }
+      if(per == 0)
+      {
+        cishu++;
+        return 0;
+      }
     
-    zj_time = per / 15;
-    cd_time =  Freq * zj_time; //充电时间
-    time_num++;
-    
-    if(cd_time > time_num)
-    {
-      T1CTL  |= 0x0B;
-      P0SEL  |=(1<<4);
-    }
-    
-    if(cd_time == time_num)
-    {
-       T1CTL  |= 0x08;
-       P0SEL &=~(1<<4);
-       OUT_DOWN = 0;
-       
-       DelayUS(4);   
-       if(!time_pn){
-           P_Ctrl = 1;   
-           DelayUS(220);   
-           P_Ctrl = 0;
-           time_pn = 1;
-        }
-       else{
-          N_Ctrl = 1;
-          DelayUS(220);  
-          N_Ctrl = 0;       
-          time_pn = 0;
+      zj_time = per / 15;
+      cd_time =  Freq * zj_time; //充电时间
+      time_num++;
+      
+      if(cd_time > time_num)
+      {
+        T1CTL  |= 0x0B;
+        P0SEL  |=(1<<4);
+      }
+      
+      if(cd_time == time_num)
+      {
+         T1CTL  |= 0x08;
+         P0SEL &=~(1<<4);
+         OUT_DOWN = 0;
+         
+         DelayUS(4);   
+         if(!time_pn)
+         {
+             P_Ctrl = 1;   
+             DelayUS(220); //200us  
+             P_Ctrl = 0;
+             time_pn = 1;
+         }
+         else
+         {
+            N_Ctrl = 1;
+            DelayUS(220);  
+            N_Ctrl = 0;       
+            time_pn = 0;
+         }
+         
+         DelayUS(15); 
+         OUT_UP = 1;
+         DelayUS(8);   
+         OUT_UP = 0;
+      }
+      
+       if(time_num == per)
+       {
+         time_num = 0;
+         jiange_num=0;
+         cishu++;
        }
-       
-       DelayUS(15); 
-       OUT_UP = 1;
-       DelayUS(8);   
-       OUT_UP = 0;
-    }
-    
-     if(time_num == per)
-     {
-       time_num = 0;
-       jiange_num=0;
-       cishu++;
-     }
   }
   return 0;
 }     
@@ -332,37 +335,37 @@ void ZJ_mode()
     case 0 :  Mode_base(qiangdu,500,800); if(cishu == 10)   moshi_num = 1;    break;
     case 1 :  Mode_base(qiangdu,500,500); if(cishu == 25)   moshi_num = 2;    break;
     case 2 :  Mode_base(qiangdu,500,250); if(cishu == 40)   moshi_num = 3;    break;
-    case 3 :  Mode_base(qiangdu,500,100);  if(cishu == 60)   moshi_num = 4;    break;
+    case 3 :  Mode_base(qiangdu,500,100); if(cishu == 60)   moshi_num = 4;    break;
     case 4 :  Mode_base(qiangdu,500,50);  if(cishu == 80)   moshi_num = 5;    break;
     case 5 :  Mode_base(qiangdu,500,0);   if(cishu == 100)  moshi_num = 6;    break;
     case 6 :  Mode_base(qiangdu,300,0);   if(cishu == 130)  moshi_num = 7;    break;
-    case 7 :  Mode_base(qiangdu,0,3000);   if(cishu == 131)  moshi_num = 8;    break;
-    case 8 :  Mode_base(qiangdu,500,800);  if(cishu == 141)  moshi_num = 9;    break;
+    case 7 :  Mode_base(qiangdu,0,3000);  if(cishu == 131)  moshi_num = 8;    break;
+    case 8 :  Mode_base(qiangdu,500,800); if(cishu == 141)  moshi_num = 9;    break;
     case 9 :  Mode_base(qiangdu,500,500); if(cishu == 156)  moshi_num = 10;   break;
     case 10 : Mode_base(qiangdu,500,250); if(cishu == 171)  moshi_num = 11;   break;
-    case 11 : Mode_base(qiangdu,500,100);  if(cishu == 191)  moshi_num = 12;   break;
-    case 12 : Mode_base(qiangdu,500,50);   if(cishu == 211)  moshi_num = 13;   break;
-    case 13 : Mode_base(qiangdu,500,0);  if(cishu == 231)  moshi_num = 14;   break;
+    case 11 : Mode_base(qiangdu,500,100); if(cishu == 191)  moshi_num = 12;   break;
+    case 12 : Mode_base(qiangdu,500,50);  if(cishu == 211)  moshi_num = 13;   break;
+    case 13 : Mode_base(qiangdu,500,0);   if(cishu == 231)  moshi_num = 14;   break;
     case 14 : Mode_base(qiangdu,300,0);   if(cishu == 261)  moshi_num = 15;   break;
-    case 15 : Mode_base(qiangdu,0,3000);   if(cishu == 262)  moshi_num = 16;   break;
-    case 16 : Mode_base(qiangdu,500,800);   if(cishu == 272)  moshi_num = 17;   break;
-    case 17 : Mode_base(qiangdu,500,500);  if(cishu == 287)  moshi_num = 18;   break;  
+    case 15 : Mode_base(qiangdu,0,3000);  if(cishu == 262)  moshi_num = 16;   break;
+    case 16 : Mode_base(qiangdu,500,800); if(cishu == 272)  moshi_num = 17;   break;
+    case 17 : Mode_base(qiangdu,500,500); if(cishu == 287)  moshi_num = 18;   break;  
     case 18 : Mode_base(qiangdu,500,250); if(cishu == 302)  moshi_num = 19;   break;
-    case 19 : Mode_base(qiangdu,500,100);  if(cishu == 322)  moshi_num = 20;   break;
-    case 20 : Mode_base(qiangdu,500,50); if(cishu == 342)  moshi_num = 21;   break;
-    case 21 : Mode_base(qiangdu,500,0);  if(cishu == 362)  moshi_num = 22;   break;
+    case 19 : Mode_base(qiangdu,500,100); if(cishu == 322)  moshi_num = 20;   break;
+    case 20 : Mode_base(qiangdu,500,50);  if(cishu == 342)  moshi_num = 21;   break;
+    case 21 : Mode_base(qiangdu,500,0);   if(cishu == 362)  moshi_num = 22;   break;
     case 22 : Mode_base(qiangdu,300,0);   if(cishu == 392)  moshi_num = 23;   break;
     case 23 : Mode_base(qiangdu,0,3000);  if(cishu == 393)  moshi_num = 24;   break;
-    case 24 : Mode_base(qiangdu,500,800);   if(cishu == 403)  moshi_num = 25;   break;
-    case 25 : Mode_base(qiangdu,500,500);  if(cishu == 418)  moshi_num = 26;   break;  
+    case 24 : Mode_base(qiangdu,500,800); if(cishu == 403)  moshi_num = 25;   break;
+    case 25 : Mode_base(qiangdu,500,500); if(cishu == 418)  moshi_num = 26;   break;  
     case 26 : Mode_base(qiangdu,500,250); if(cishu == 433)  moshi_num = 27;   break;
-    case 27 : Mode_base(qiangdu,500,100);  if(cishu == 453)  moshi_num = 28;   break;
-    case 28 : Mode_base(qiangdu,500,50); if(cishu == 473)  moshi_num = 29;   break;
-    case 29 : Mode_base(qiangdu,500,0);  if(cishu == 493)  moshi_num = 30;   break;
+    case 27 : Mode_base(qiangdu,500,100); if(cishu == 453)  moshi_num = 28;   break;
+    case 28 : Mode_base(qiangdu,500,50);  if(cishu == 473)  moshi_num = 29;   break;
+    case 29 : Mode_base(qiangdu,500,0);   if(cishu == 493)  moshi_num = 30;   break;
     case 30 : Mode_base(qiangdu,300,0);   if(cishu == 523)  moshi_num = 31;   break;
-    case 31 : Mode_base(qiangdu,0,3000);   if(cishu == 524)  moshi_num = 32;   break;
-    case 32 : Mode_base(qiangdu,2000,500);   if(cishu == 554)  moshi_num = 33;   break;
-    case 33 : Mode_base(qiangdu,0,4000);   if(cishu == 555)  moshi_num = 34;   break;
+    case 31 : Mode_base(qiangdu,0,3000);  if(cishu == 524)  moshi_num = 32;   break;
+    case 32 : Mode_base(qiangdu,2000,500); if(cishu == 554) moshi_num = 33;   break;
+    case 33 : Mode_base(qiangdu,0,4000);   if(cishu == 555) moshi_num = 34;   break;
     default: moshi_num=0;cishu = 0; break;
   }
 
@@ -417,7 +420,7 @@ void TN_mode()
     case 41 : Mode_base(qiangdu,0,2000);  if(cishu == 591)  moshi_num = 42;   break;
     case 42 : Mode_base(qiangdu,400,0);   if(cishu == 610)  moshi_num = 43;   break;
     case 43 : Mode_base(qiangdu,0,2000);  if(cishu == 611)  moshi_num = 44;   break;
-    case 44 : Mode_base(qiangdu,2300,0);   if(cishu == 650)  moshi_num = 45;   break;
+    case 44 : Mode_base(qiangdu,2300,0);  if(cishu == 650)  moshi_num = 45;   break;
     case 45 : Mode_base(qiangdu,0,2000);  if(cishu ==651)   moshi_num = 46;   break;
     case 46 : Mode_base(qiangdu,2000,500);if(cishu == 665)  moshi_num = 47;   break;
     case 47 : Mode_base(qiangdu,0,5000);  if(cishu == 666)  moshi_num = 48;   break;
@@ -431,45 +434,45 @@ void AM_mode()
  switch(moshi_num)
   {
     case 0 :  Mode_base(qiangdu,1000,1000);  if(cishu == 10)   moshi_num = 1;    break;
-    case 1 :  Mode_base(qiangdu,0,2000); if(cishu == 11)   moshi_num = 2;    break;
-    case 2 :  Mode_base(qiangdu,1000,0);   if(cishu == 21)   moshi_num = 3;    break;
-    case 3 :  Mode_base(qiangdu,0,2000);  if(cishu == 22)   moshi_num = 4;    break;
-    case 4 :  Mode_base(qiangdu,500,500);  if(cishu == 32)   moshi_num = 5;    break;
-    case 5 :  Mode_base(qiangdu,0,2000);   if(cishu == 33)  moshi_num = 6;    break;
-    case 6 :  Mode_base(qiangdu,500,250);  if(cishu == 43)  moshi_num = 7;    break;
-    case 7 :  Mode_base(qiangdu,0,2000); if(cishu == 44)  moshi_num = 8;    break;
-    case 8 :  Mode_base(qiangdu,500,0); if(cishu == 59)  moshi_num = 9;    break;
-    case 9 :  Mode_base(qiangdu,0,2000); if(cishu == 60)  moshi_num = 10;   break;
-    case 10 : Mode_base(qiangdu,400,400);  if(cishu == 80)  moshi_num = 11;   break;
-    case 11 : Mode_base(qiangdu,0,2000);  if(cishu == 81)  moshi_num = 12;   break;
-    case 12 : Mode_base(qiangdu,1000,500);   if(cishu == 91)  moshi_num = 13;   break;
-    case 13 : Mode_base(qiangdu,0,2000);  if(cishu == 92)  moshi_num = 14;   break;
-    case 14 : Mode_base(qiangdu,500,500);if(cishu == 107)  moshi_num = 15;   break;
-    case 15 : Mode_base(qiangdu,0,2000); if(cishu == 108)  moshi_num = 16;   break;
-    case 16 : Mode_base(qiangdu,500,0);   if(cishu == 128)  moshi_num = 17;   break;
-    case 17 : Mode_base(qiangdu,0,2000);  if(cishu == 129)  moshi_num = 18;   break;  
-    case 18 : Mode_base(qiangdu,400,0); if(cishu == 150)  moshi_num = 19;   break;
-    case 19 : Mode_base(qiangdu,0,2000);  if(cishu == 151)  moshi_num = 20;   break;
-    case 20 : Mode_base(qiangdu,1000,500); if(cishu == 161)  moshi_num = 21;   break;
-    case 21 : Mode_base(qiangdu,0,2000);  if(cishu == 162)  moshi_num = 22;   break;
-    case 22 : Mode_base(qiangdu,500,500);   if(cishu == 177)  moshi_num = 23;   break;
-    case 23 : Mode_base(qiangdu,0,2000);  if(cishu == 178)  moshi_num = 24;   break;
-    case 24 : Mode_base(qiangdu,500,0);   if(cishu == 198)  moshi_num = 25;   break;
-    case 25 : Mode_base(qiangdu,0,2000);  if(cishu == 199)  moshi_num = 26;   break;
-    case 26 : Mode_base(qiangdu,400,0);   if(cishu == 220)  moshi_num = 27;   break;
-    case 27 : Mode_base(qiangdu,0,2000);  if(cishu == 221)  moshi_num = 28;   break;
-    case 28 : Mode_base(qiangdu,2000,0);if(cishu == 241)  moshi_num = 29;   break;
-    case 29 : Mode_base(qiangdu,0,2000);  if(cishu == 242)  moshi_num = 30;   break;
-    case 30 : Mode_base(qiangdu,1000,0);  if(cishu == 272)  moshi_num = 31;   break;
-    case 31 : Mode_base(qiangdu,0,2000);  if(cishu == 273)  moshi_num = 32;   break;
-    case 32 : Mode_base(qiangdu,400,0);   if(cishu == 300)  moshi_num = 33;   break;
-    case 33 : Mode_base(qiangdu,0,2000);  if(cishu == 301)  moshi_num = 34;   break;
-    case 34 : Mode_base(qiangdu,300,0); if(cishu == 330)  moshi_num = 35;   break;
-    case 35 : Mode_base(qiangdu,0,2000);  if(cishu == 331)  moshi_num = 36;   break;
-    case 36 : Mode_base(qiangdu,2000,0); if(cishu == 351)  moshi_num = 37;   break;
-    case 37 : Mode_base(qiangdu,0,2000);  if(cishu == 352)  moshi_num = 38;   break;
-    case 38 : Mode_base(qiangdu,1000,0);if(cishu == 382)  moshi_num = 39;   break;
-    case 39 : Mode_base(qiangdu,0,2000);  if(cishu == 383)  moshi_num = 40;   break;
+    case 1 :  Mode_base(qiangdu,0,2000);     if(cishu == 11)   moshi_num = 2;    break;
+    case 2 :  Mode_base(qiangdu,1000,0);     if(cishu == 21)   moshi_num = 3;    break;
+    case 3 :  Mode_base(qiangdu,0,2000);     if(cishu == 22)   moshi_num = 4;    break;
+    case 4 :  Mode_base(qiangdu,500,500);    if(cishu == 32)   moshi_num = 5;    break;
+    case 5 :  Mode_base(qiangdu,0,2000);     if(cishu == 33)   moshi_num = 6;    break;
+    case 6 :  Mode_base(qiangdu,500,250);    if(cishu == 43)   moshi_num = 7;    break;
+    case 7 :  Mode_base(qiangdu,0,2000);     if(cishu == 44)   moshi_num = 8;    break;
+    case 8 :  Mode_base(qiangdu,500,0);      if(cishu == 59)   moshi_num = 9;    break;
+    case 9 :  Mode_base(qiangdu,0,2000);     if(cishu == 60)   moshi_num = 10;   break;
+    case 10 : Mode_base(qiangdu,400,400);    if(cishu == 80)   moshi_num = 11;   break;
+    case 11 : Mode_base(qiangdu,0,2000);     if(cishu == 81)   moshi_num = 12;   break;
+    case 12 : Mode_base(qiangdu,1000,500);   if(cishu == 91)   moshi_num = 13;   break;
+    case 13 : Mode_base(qiangdu,0,2000);     if(cishu == 92)   moshi_num = 14;   break;
+    case 14 : Mode_base(qiangdu,500,500);    if(cishu == 107)  moshi_num = 15;   break;
+    case 15 : Mode_base(qiangdu,0,2000);     if(cishu == 108)  moshi_num = 16;   break;
+    case 16 : Mode_base(qiangdu,500,0);      if(cishu == 128)  moshi_num = 17;   break;
+    case 17 : Mode_base(qiangdu,0,2000);     if(cishu == 129)  moshi_num = 18;   break;  
+    case 18 : Mode_base(qiangdu,400,0);      if(cishu == 150)  moshi_num = 19;   break;
+    case 19 : Mode_base(qiangdu,0,2000);     if(cishu == 151)  moshi_num = 20;   break;
+    case 20 : Mode_base(qiangdu,1000,500);   if(cishu == 161)  moshi_num = 21;   break;
+    case 21 : Mode_base(qiangdu,0,2000);     if(cishu == 162)  moshi_num = 22;   break;
+    case 22 : Mode_base(qiangdu,500,500);    if(cishu == 177)  moshi_num = 23;   break;
+    case 23 : Mode_base(qiangdu,0,2000);     if(cishu == 178)  moshi_num = 24;   break;
+    case 24 : Mode_base(qiangdu,500,0);      if(cishu == 198)  moshi_num = 25;   break;
+    case 25 : Mode_base(qiangdu,0,2000);     if(cishu == 199)  moshi_num = 26;   break;
+    case 26 : Mode_base(qiangdu,400,0);      if(cishu == 220)  moshi_num = 27;   break;
+    case 27 : Mode_base(qiangdu,0,2000);     if(cishu == 221)  moshi_num = 28;   break;
+    case 28 : Mode_base(qiangdu,2000,0);     if(cishu == 241)  moshi_num = 29;   break;
+    case 29 : Mode_base(qiangdu,0,2000);     if(cishu == 242)  moshi_num = 30;   break;
+    case 30 : Mode_base(qiangdu,1000,0);     if(cishu == 272)  moshi_num = 31;   break;
+    case 31 : Mode_base(qiangdu,0,2000);     if(cishu == 273)  moshi_num = 32;   break;
+    case 32 : Mode_base(qiangdu,400,0);      if(cishu == 300)  moshi_num = 33;   break;
+    case 33 : Mode_base(qiangdu,0,2000);     if(cishu == 301)  moshi_num = 34;   break;
+    case 34 : Mode_base(qiangdu,300,0);      if(cishu == 330)  moshi_num = 35;   break;
+    case 35 : Mode_base(qiangdu,0,2000);     if(cishu == 331)  moshi_num = 36;   break;
+    case 36 : Mode_base(qiangdu,2000,0);     if(cishu == 351)  moshi_num = 37;   break;
+    case 37 : Mode_base(qiangdu,0,2000);     if(cishu == 352)  moshi_num = 38;   break;
+    case 38 : Mode_base(qiangdu,1000,0);     if(cishu == 382)  moshi_num = 39;   break;
+    case 39 : Mode_base(qiangdu,0,2000);     if(cishu == 383)  moshi_num = 40;   break;
     default: moshi_num=0;cishu = 0; break;
   }
 
@@ -480,45 +483,45 @@ void CJ_mode()
    switch(moshi_num)
   {
     case 0 :  Mode_base(qiangdu,1000,1000);  if(cishu == 10)   moshi_num = 1;    break;
-    case 1 :  Mode_base(qiangdu,0,2000); if(cishu == 11)   moshi_num = 2;    break;
+    case 1 :  Mode_base(qiangdu,0,2000);     if(cishu == 11)   moshi_num = 2;    break;
     case 2 :  Mode_base(qiangdu,1000,800);   if(cishu == 21)   moshi_num = 3;    break;
-    case 3 :  Mode_base(qiangdu,0,2000);  if(cishu == 22)   moshi_num = 4;    break;
-    case 4 :  Mode_base(qiangdu,500,500);  if(cishu == 32)   moshi_num = 5;    break;
-    case 5 :  Mode_base(qiangdu,0,2000);   if(cishu == 33)  moshi_num = 6;    break;
-    case 6 :  Mode_base(qiangdu,1000,1000);  if(cishu == 43)  moshi_num = 7;    break;
-    case 7 :  Mode_base(qiangdu,0,2000); if(cishu == 44)  moshi_num = 8;    break;
-    case 8 :  Mode_base(qiangdu,1000,800); if(cishu == 59)  moshi_num = 9;    break;
-    case 9 :  Mode_base(qiangdu,0,2000); if(cishu == 60)  moshi_num = 10;   break;
-    case 10 : Mode_base(qiangdu,500,500);  if(cishu == 80)  moshi_num = 11;   break;
-    case 11 : Mode_base(qiangdu,0,2000);  if(cishu == 81)  moshi_num = 12;   break;
-    case 12 : Mode_base(qiangdu,300,300);   if(cishu == 91)  moshi_num = 13;   break;
-    case 13 : Mode_base(qiangdu,0,2000);  if(cishu == 92)  moshi_num = 14;   break;
-    case 14 : Mode_base(qiangdu,500,500);if(cishu == 107)  moshi_num = 15;   break;
-    case 15 : Mode_base(qiangdu,0,2000); if(cishu == 108)  moshi_num = 16;   break;
-    case 16 : Mode_base(qiangdu,500,0);   if(cishu == 128)  moshi_num = 17;   break;
-    case 17 : Mode_base(qiangdu,0,2000);  if(cishu == 129)  moshi_num = 18;   break;  
-    case 18 : Mode_base(qiangdu,1000,0); if(cishu == 150)  moshi_num = 19;   break;
-    case 19 : Mode_base(qiangdu,0,2000);  if(cishu == 151)  moshi_num = 20;   break;
-    case 20 : Mode_base(qiangdu,500,0); if(cishu == 161)  moshi_num = 21;   break;
-    case 21 : Mode_base(qiangdu,0,2000);  if(cishu == 162)  moshi_num = 22;   break;
-    case 22 : Mode_base(qiangdu,500,500);   if(cishu == 177)  moshi_num = 23;   break;
-    case 23 : Mode_base(qiangdu,0,2000);  if(cishu == 178)  moshi_num = 24;   break;
+    case 3 :  Mode_base(qiangdu,0,2000);     if(cishu == 22)   moshi_num = 4;    break;
+    case 4 :  Mode_base(qiangdu,500,500);    if(cishu == 32)   moshi_num = 5;    break;
+    case 5 :  Mode_base(qiangdu,0,2000);     if(cishu == 33)   moshi_num = 6;    break;
+    case 6 :  Mode_base(qiangdu,1000,1000);  if(cishu == 43)   moshi_num = 7;    break;
+    case 7 :  Mode_base(qiangdu,0,2000);     if(cishu == 44)   moshi_num = 8;    break;
+    case 8 :  Mode_base(qiangdu,1000,800);   if(cishu == 59)   moshi_num = 9;    break;
+    case 9 :  Mode_base(qiangdu,0,2000);     if(cishu == 60)   moshi_num = 10;   break;
+    case 10 : Mode_base(qiangdu,500,500);    if(cishu == 80)   moshi_num = 11;   break;
+    case 11 : Mode_base(qiangdu,0,2000);     if(cishu == 81)   moshi_num = 12;   break;
+    case 12 : Mode_base(qiangdu,300,300);    if(cishu == 91)   moshi_num = 13;   break;
+    case 13 : Mode_base(qiangdu,0,2000);     if(cishu == 92)   moshi_num = 14;   break;
+    case 14 : Mode_base(qiangdu,500,500);    if(cishu == 107)  moshi_num = 15;   break;
+    case 15 : Mode_base(qiangdu,0,2000);     if(cishu == 108)  moshi_num = 16;   break;
+    case 16 : Mode_base(qiangdu,500,0);      if(cishu == 128)  moshi_num = 17;   break;
+    case 17 : Mode_base(qiangdu,0,2000);     if(cishu == 129)  moshi_num = 18;   break;  
+    case 18 : Mode_base(qiangdu,1000,0);     if(cishu == 150)  moshi_num = 19;   break;
+    case 19 : Mode_base(qiangdu,0,2000);     if(cishu == 151)  moshi_num = 20;   break;
+    case 20 : Mode_base(qiangdu,500,0);      if(cishu == 161)  moshi_num = 21;   break;
+    case 21 : Mode_base(qiangdu,0,2000);     if(cishu == 162)  moshi_num = 22;   break;
+    case 22 : Mode_base(qiangdu,500,500);    if(cishu == 177)  moshi_num = 23;   break;
+    case 23 : Mode_base(qiangdu,0,2000);     if(cishu == 178)  moshi_num = 24;   break;
     case 24 : Mode_base(qiangdu,500,1000);   if(cishu == 198)  moshi_num = 25;   break;
-    case 25 : Mode_base(qiangdu,0,2000);  if(cishu == 199)  moshi_num = 26;   break;
-    case 26 : Mode_base(qiangdu,500,500);   if(cishu == 220)  moshi_num = 27;   break;
-    case 27 : Mode_base(qiangdu,0,2000);  if(cishu == 221)  moshi_num = 28;   break;
-    case 28 : Mode_base(qiangdu,500,1000);if(cishu == 241)  moshi_num = 29;   break;
-    case 29 : Mode_base(qiangdu,0,2000);  if(cishu == 242)  moshi_num = 30;   break;
-    case 30 : Mode_base(qiangdu,1000,0);  if(cishu == 272)  moshi_num = 31;   break;
-    case 31 : Mode_base(qiangdu,0,2000);  if(cishu == 273)  moshi_num = 32;   break;
-    case 32 : Mode_base(qiangdu,500,0);   if(cishu == 300)  moshi_num = 33;   break;
-    case 33 : Mode_base(qiangdu,0,2000);  if(cishu == 301)  moshi_num = 34;   break;
-    case 34 : Mode_base(qiangdu,500,0); if(cishu == 330)  moshi_num = 35;   break;
-    case 35 : Mode_base(qiangdu,0,2000);  if(cishu == 331)  moshi_num = 36;   break;
-    case 36 : Mode_base(qiangdu,1000,0); if(cishu == 351)  moshi_num = 37;   break;
-    case 37 : Mode_base(qiangdu,0,2000);  if(cishu == 352)  moshi_num = 38;   break;
-    case 38 : Mode_base(qiangdu,1000,500);if(cishu == 382)  moshi_num = 39;   break;
-    case 39 : Mode_base(qiangdu,0,2000);  if(cishu == 383)  moshi_num = 40;   break;
+    case 25 : Mode_base(qiangdu,0,2000);     if(cishu == 199)  moshi_num = 26;   break;
+    case 26 : Mode_base(qiangdu,500,500);    if(cishu == 220)  moshi_num = 27;   break;
+    case 27 : Mode_base(qiangdu,0,2000);     if(cishu == 221)  moshi_num = 28;   break;
+    case 28 : Mode_base(qiangdu,500,1000);   if(cishu == 241)  moshi_num = 29;   break;
+    case 29 : Mode_base(qiangdu,0,2000);     if(cishu == 242)  moshi_num = 30;   break;
+    case 30 : Mode_base(qiangdu,1000,0);     if(cishu == 272)  moshi_num = 31;   break;
+    case 31 : Mode_base(qiangdu,0,2000);     if(cishu == 273)  moshi_num = 32;   break;
+    case 32 : Mode_base(qiangdu,500,0);      if(cishu == 300)  moshi_num = 33;   break;
+    case 33 : Mode_base(qiangdu,0,2000);     if(cishu == 301)  moshi_num = 34;   break;
+    case 34 : Mode_base(qiangdu,500,0);      if(cishu == 330)  moshi_num = 35;   break;
+    case 35 : Mode_base(qiangdu,0,2000);     if(cishu == 331)  moshi_num = 36;   break;
+    case 36 : Mode_base(qiangdu,1000,0);     if(cishu == 351)  moshi_num = 37;   break;
+    case 37 : Mode_base(qiangdu,0,2000);     if(cishu == 352)  moshi_num = 38;   break;
+    case 38 : Mode_base(qiangdu,1000,500);   if(cishu == 382)  moshi_num = 39;   break;
+    case 39 : Mode_base(qiangdu,0,2000);     if(cishu == 383)  moshi_num = 40;   break;
     default: moshi_num=0;cishu = 0; break;
   }
 }
